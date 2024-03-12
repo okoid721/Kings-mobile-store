@@ -15,7 +15,7 @@ const PaystackCheckout = ({
   paymentSuccess: boolean;
   handleSetPaymentSuccess: (value: boolean) => void;
 }) => {
-  const publicKey = process.env.REACT_APP_PAYSTACK_SECRET_KEY;
+  const publicKey = 'pk_test_cbdbef83d1ee1286e06785b2dc77986078a65123';
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -103,13 +103,13 @@ const PaystackCheckout = ({
               />
             </div>
             <PaystackButton
+              publicKey={publicKey}
               text="Pay Now"
               className="bg-[#333] p-3 text-white rounded-md "
               amount={Math.round(amount * 100)} // Convert amount to the smallest currency unit (kobo)
               email={email}
               onSuccess={handlePaymentSuccess}
               onClose={handlePaymentClose}
-              publicKey={''}
             />
           </div>
         </div>
