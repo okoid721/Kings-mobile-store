@@ -103,13 +103,13 @@ const PaystackCheckout = ({
               />
             </div>
             <PaystackButton
-              publicKey={publicKey}
               text="Pay Now"
               className="bg-[#333] p-3 text-white rounded-md "
               amount={Math.round(amount * 100)} // Convert amount to the smallest currency unit (kobo)
               email={email}
               onSuccess={handlePaymentSuccess}
               onClose={handlePaymentClose}
+              publicKey={''}
             />
           </div>
         </div>
