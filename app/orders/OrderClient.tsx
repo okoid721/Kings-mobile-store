@@ -3,8 +3,7 @@
 import { Order, Product, User } from '@prisma/client';
 import React, { useCallback } from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import formatPrice from '@/utils/formatPrice';
-import Heading from '@/app/components/Heading';
+
 import Status from '@/app/components/Status';
 import {
   MdAccessTimeFilled,
@@ -17,6 +16,8 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import moment from 'moment';
+import { formatPrice } from '@/utils/formatPrice';
+import Haeding from '../components/Haeding';
 
 interface OrderClientProps {
   orders: ExtendedOrder[];
@@ -148,7 +149,7 @@ const OrderClient: React.FC<OrderClientProps> = ({ orders }) => {
   return (
     <div className=" max-w-[1150px] m-auto text-xl">
       <div className=" mb-4 mt-8">
-        <Heading title="Orders" />
+        <Haeding title="Orders" />
       </div>
 
       <div style={{ height: 600, width: '100%' }}>
