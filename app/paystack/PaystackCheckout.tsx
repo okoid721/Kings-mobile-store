@@ -15,7 +15,7 @@ const PaystackCheckout = ({
   paymentSuccess: boolean;
   handleSetPaymentSuccess: (value: boolean) => void;
 }) => {
-  const publicKey = 'pk_test_cbdbef83d1ee1286e06785b2dc77986078a65123';
+  const publicKey = process.env.REACT_APP_PAYSTACK_SECRET_KEY;
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
