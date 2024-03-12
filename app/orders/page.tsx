@@ -3,7 +3,7 @@ import React from 'react';
 import OrderClient from './OrderClient';
 import { getCurrentUser } from '@/actions/getCurrentUser';
 import NullData from '@/app/components/NullData';
-import getOrdersByUserId from '@/actions/getOrdersByUserId';
+import getOrderByUserId from '@/actions/getOrderByUserId';
 
 const Order = async () => {
   const currentUser = await getCurrentUser();
@@ -12,7 +12,7 @@ const Order = async () => {
     return <NullData title="Oops! Access Denied" />;
   }
 
-  const orders = await getOrdersByUserId(currentUser.id);
+  const orders = await getOrderByUserId(currentUser.id);
 
   if (!orders) {
     return <NullData title="No orders yet..." />;
