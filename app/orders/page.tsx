@@ -1,4 +1,4 @@
-import Container from '@/app/components/Container';
+import Containers from '@/app/components/Containers';
 import React from 'react';
 import OrderClient from './OrderClient';
 import { getCurrentUser } from '@/actions/getCurrentUser';
@@ -19,9 +19,9 @@ const Order = async () => {
   }
   return (
     <div className="p-8 bg-white text-[#0F1111] select-none ">
-      <Container>
+      <Containers>
         <OrderClient orders={orders} />
-      </Container>
+      </Containers>
     </div>
   );
 };
