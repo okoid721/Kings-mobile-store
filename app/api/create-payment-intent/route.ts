@@ -56,7 +56,7 @@ export async function POST(request: Request) {
           where: { paymentIntentId: payment_intent_id },
           data: {
             amount: total,
-            products: items,
+            product: items,
           },
         }),
       ]);
