@@ -1,6 +1,5 @@
-'use client';
 import React from 'react';
-import Containers from '../Containers';
+import Container from '../Container';
 import Link from 'next/link';
 import { Shadows_Into_Light } from 'next/font/google';
 import CartCount from './CartCount';
@@ -17,13 +16,13 @@ const NavBar = async () => {
   return (
     <div className="sticky top-0 w-full bg-[#131921] select-none z-30 shadow-sm">
       <div className="py-4 border-b-[1px]">
-        <Containers>
+        <Container>
           <div className="flex items-center justify-between gap-3 md:gap-0">
             <Link
               href="/"
               className={`${redressed.className} text-3xl md:text-5xl font-bold text-[#F9A024]`}
             >
-              Kings-store.io
+              Kings.io
             </Link>
             <div className="hidden md:block">
               <SearchBar />
@@ -33,7 +32,7 @@ const NavBar = async () => {
               <UserMenu currentUser={currentUser} />
             </div>
           </div>
-        </Containers>
+        </Container>
       </div>
       <Categories />
     </div>
