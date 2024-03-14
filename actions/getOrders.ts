@@ -1,4 +1,4 @@
-import prisma from '@/libs/prismadb';
+import prisma from "@/libs/prismadb";
 
 export default async function getOrders() {
   try {
@@ -7,7 +7,7 @@ export default async function getOrders() {
         user: true,
       },
       orderBy: {
-        createdDate: 'desc',
+        createdDate: "desc",
       },
     });
 
