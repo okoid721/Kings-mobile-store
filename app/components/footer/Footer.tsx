@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React from "react";
-import Container from "../Container";
-import FooterList from "./FooterList";
-import Link from "next/link";
-import { FaFacebook } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa6";
-import { FaYoutube } from "react-icons/fa6";
+import React from 'react';
+import Container from '../Container';
+import FooterList from './FooterList';
+import Link from 'next/link';
+import { FaFacebook } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
+import { FaInstagram } from 'react-icons/fa6';
+import { FaYoutube } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
@@ -24,7 +24,7 @@ const Footer = () => {
             <Link href="#">Accessories</Link>
           </FooterList>
           <FooterList>
-            <h3 className="text-base font-bold mb-2">ABOUT SALER</h3>
+            <h3 className="text-base font-bold mb-2">ABOUT kings</h3>
             <Link href="#">Contact us</Link>
             <Link href="#">About Us</Link>
             <Link href="#">Terms & Conditions</Link>
@@ -37,11 +37,11 @@ const Footer = () => {
             <Link href="#">Bank Transfer</Link>
           </FooterList>
           <FooterList>
-            <h3 className="text-base font-bold mb-2">BUYING ON SALER</h3>
+            <h3 className="text-base font-bold mb-2">BUYING ON kings</h3>
             <Link href="#">Buyer Safety Centre</Link>
             <Link href="#">FAQs</Link>
             <Link href="#">Delivery</Link>
-            <Link href="#">Saler Return Policy</Link>
+            <Link href="#">kings Return Policy</Link>
             <Link href="#">Digital Services</Link>
             <Link href="#">Bulk Purchase</Link>
           </FooterList>
@@ -53,9 +53,9 @@ const Footer = () => {
             <Link href="#">Authentic Items Policy</Link>
           </FooterList>
           <FooterList>
-            <h3 className="text-base font-bold mb-2">MAKE MONEY ON SALER</h3>
-            <Link href="#">Become a Saler Affiliate</Link>
-            <Link href="#">Sell on Saler</Link>
+            <h3 className="text-base font-bold mb-2">MAKE MONEY ON kings</h3>
+            <Link href="#">Become a kings Affiliate</Link>
+            <Link href="#">Sell on kings</Link>
           </FooterList>
           <FooterList>
             <h3 className="text-base font-bold mb-2">CONNECT WITH US</h3>
@@ -77,7 +77,7 @@ const Footer = () => {
         </div>
         <div className="mx-auto flex items-center justify-center">
           <Link href="https://www.linkedin.com/in/mlo-olagunju/">
-            &copy; Saler by MlO {new Date().getFullYear()}. All rights reserved
+            &copy; kings by MlO {new Date().getFullYear()}. All rights reserved
           </Link>
         </div>
       </Container>

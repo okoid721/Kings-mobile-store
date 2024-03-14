@@ -1,9 +1,9 @@
-"use client";
-import { Order, Product, User } from "@prisma/client";
-import React, { useEffect, useState } from "react";
-import Heading from "../components/Heading";
-import formatPrice from "@/utils/formatPrice";
-import { formatNumber } from "@/utils/formatNumber";
+'use client';
+import { Order, Product, User } from '@prisma/client';
+import React, { useEffect, useState } from 'react';
+import Heading from '../components/Heading';
+import formatPrice from '@/utils/formatPrice';
+import { formatNumber } from '@/utils/formatNumber';
 
 interface SummryProps {
   orders: Order[];
@@ -20,27 +20,27 @@ type summaryDataType = {
 const Summary: React.FC<SummryProps> = ({ orders, products, users }) => {
   const [summaryData, setSummaryData] = useState<summaryDataType>({
     sale: {
-      label: "Total Sale",
+      label: 'Total Sale',
       digit: 0,
     },
     products: {
-      label: "Total Products",
+      label: 'Total Products',
       digit: 0,
     },
     orders: {
-      label: "Total Orders",
+      label: 'Total Orders',
       digit: 0,
     },
     paidOrders: {
-      label: "Paid Orders",
+      label: 'Paid Orders',
       digit: 0,
     },
     unpaidOrders: {
-      label: "Unpaid Orders",
+      label: 'Unpaid Orders',
       digit: 0,
     },
     users: {
-      label: "Total Users",
+      label: 'Total Users',
       digit: 0,
     },
   });
@@ -50,16 +50,16 @@ const Summary: React.FC<SummryProps> = ({ orders, products, users }) => {
       let tempData = { ...prev };
 
       const totalSale = orders.reduce((acc, item) => {
-        if (item.status === "complete") {
+        if (item.status === 'complete') {
           return acc + item.amount;
         } else return acc;
       }, 0);
 
       const paidOrders = orders.filter((order) => {
-        return order.status === "complete";
+        return order.status === 'complete';
       });
       const unPaidOrders = orders.filter((order) => {
-        return order.status === "pending";
+        return order.status === 'pending';
       });
 
       tempData.sale.digit = totalSale;
@@ -77,7 +77,7 @@ const Summary: React.FC<SummryProps> = ({ orders, products, users }) => {
   return (
     <div className=" max-w-[1150px] mx-auto  bg-white">
       <div className=" pb-4 pt-8">
-        <Heading title="Your Saler seller stats" center />
+        <Heading title="Your kings seller stats" center />
       </div>
       <div className="grid grid-cols-2 gap-3 max-h-[80vh] overflow-y-auto p-8">
         {summaryKeys &&
@@ -88,7 +88,7 @@ const Summary: React.FC<SummryProps> = ({ orders, products, users }) => {
                 className=" rounded-xl border-2 p-4 flex flex-col items-center gap-2 transition"
               >
                 <div className=" text-xl md:text-4xl font-bold">
-                  {summaryData[key].label === "Total Sale" ? (
+                  {summaryData[key].label === 'Total Sale' ? (
                     <>{formatPrice(summaryData[key].digit / 100)}</>
                   ) : (
                     <>{formatNumber(summaryData[key].digit)}</>

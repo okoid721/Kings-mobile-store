@@ -4,10 +4,10 @@ import {
   useContext,
   useEffect,
   useState,
-} from "react";
-import { toast } from "react-hot-toast";
+} from 'react';
+import { toast } from 'react-hot-toast';
 
-import { CartProductType } from "../product/[productId]/ProductDetails";
+import { CartProductType } from '../product/[productId]/ProductDetails';
 
 type CartContextType = {
   cartTotalAmount: number;
@@ -41,10 +41,10 @@ export const CartContextProvider = (props: Props) => {
   const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
 
   useEffect(() => {
-    const cartItems: any = localStorage.getItem("salerCartItems");
+    const cartItems: any = localStorage.getItem('kingsCartItems');
     const cProducts: CartProductType[] | null = JSON.parse(cartItems);
-    const SalerPaymentIntent: any = localStorage.getItem("SalerPaymentIntent");
-    const paymentIntent: string | null = JSON.parse(SalerPaymentIntent);
+    const kingsPaymentIntent: any = localStorage.getItem('kingsPaymentIntent');
+    const paymentIntent: string | null = JSON.parse(kingsPaymentIntent);
 
     setCartProducts(cProducts);
     setPaymentIntent(paymentIntent);
@@ -91,8 +91,8 @@ export const CartContextProvider = (props: Props) => {
         updatedCart = [product];
       }
 
-      toast.success("You have successfully added a new product from your cart");
-      localStorage.setItem("salerCartItems", JSON.stringify(updatedCart));
+      toast.success('You have successfully added a new product from your cart');
+      localStorage.setItem('kingsCartItems', JSON.stringify(updatedCart));
       return updatedCart;
     });
   }, []);
@@ -106,9 +106,9 @@ export const CartContextProvider = (props: Props) => {
         });
 
         setCartProducts(filteredProducts);
-        toast.success("You have successfully removed a product from your cart");
+        toast.success('You have successfully removed a product from your cart');
         localStorage.setItem(
-          "salerCartItems",
+          'kingsCartItems',
           JSON.stringify(filteredProducts)
         );
       }
@@ -121,7 +121,7 @@ export const CartContextProvider = (props: Props) => {
       let updatedCart;
 
       if (product.qauntity === 99) {
-        return toast.error("Ooop Maximum Reached");
+        return toast.error('Ooop Maximum Reached');
       }
       if (cartProducts) {
         updatedCart = [...cartProducts];
@@ -135,7 +135,7 @@ export const CartContextProvider = (props: Props) => {
             .qauntity;
         }
         setCartProducts(updatedCart);
-        localStorage.setItem("salerCartItems", JSON.stringify(updatedCart));
+        localStorage.setItem('kingsCartItems', JSON.stringify(updatedCart));
       }
     },
     [cartProducts]
@@ -146,7 +146,7 @@ export const CartContextProvider = (props: Props) => {
       let updatedCart;
 
       if (product.qauntity === 1) {
-        return toast.error("Ooop Maximum Reached");
+        return toast.error('Ooop Maximum Reached');
       }
       if (cartProducts) {
         updatedCart = [...cartProducts];
@@ -160,7 +160,7 @@ export const CartContextProvider = (props: Props) => {
             .qauntity;
         }
         setCartProducts(updatedCart);
-        localStorage.setItem("salerCartItems", JSON.stringify(updatedCart));
+        localStorage.setItem('kingsCartItems', JSON.stringify(updatedCart));
       }
     },
     [cartProducts]
@@ -169,14 +169,14 @@ export const CartContextProvider = (props: Props) => {
   const handleClearCart = useCallback(() => {
     setCartProducts(null);
     setCartTotalQty(0);
-    toast.success("Your cart has been cleared successfully");
-    localStorage.setItem("salerCartItems", JSON.stringify(null));
+    toast.success('Your cart has been cleared successfully');
+    localStorage.setItem('kingsCartItems', JSON.stringify(null));
   }, [cartProducts]);
 
   const handleSetPaymentIntent = useCallback(
     (val: string | null) => {
       setPaymentIntent(val);
-      localStorage.setItem("SalerPaymentIntent", JSON.stringify(val));
+      localStorage.setItem('kingsPaymentIntent', JSON.stringify(val));
     },
     [paymentIntent]
   );
@@ -203,7 +203,7 @@ export const useCart = () => {
   const context = useContext(CartContext);
 
   if (context === null) {
-    throw new Error("useCart must be used within the CartContextProvider");
+    throw new Error('useCart must be used within the CartContextProvider');
   }
   return context;
 };
