@@ -1,71 +1,72 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import Image from "next/image";
+import React from "react";
 
-interface ImageObject {
-  url: string;
-  width?: number;
-  height?: number;
-}
+const banners = [
+  {
+    title: "Gadget Bazaar!",
+    description: "Explore our vast collection of gadgets.",
+    discount: "SAVE UPTO 30%",
+    imageSrc: "/banner.png",
+  },
+  // {
+  //   title: "Tech Wonderland",
+  //   description: "Discover the latest tech wonders.",
+  //   discount: "Don't miss out!",
+  //   imageSrc: "/banner2.png",
+  // },
+  // {
+  //   title: "Electronics Extravaganza",
+  //   description: "Find the best deals on electronics.",
+  //   discount: "Limited Time Offer",
+  //   imageSrc: "/banner3.png",
+  // },
+  // {
+  //   title: "Gizmo Galore",
+  //   description: "Your one-stop shop for all things gizmos.",
+  //   discount: "Shop Now!",
+  //   imageSrc: "/banner4.webp",
+  // },
+  // {
+  //   title: "Digital Delights",
+  //   description: "Experience the future with our digital gadgets.",
+  //   discount: "Exclusive Discounts Inside",
+  //   imageSrc: "/banner5.png",
+  // },
+];
 
 const HomeBanner = () => {
-  const [currentImage, setCurrentImage] = useState(0);
-  const imageUrls: ImageObject[] = [
-    { url: '/banner-image.png', width: 600, height: 600 },
-
-    { url: '/download-removebg-preview.png', width: 600, height: 600 },
-
-    { url: '/download-removebg-preview (1).png', width: 600, height: 600 },
-
-    { url: '/download-removebg-preview (2).png', width: 600, height: 600 },
-
-    { url: '/download-removebg-preview (3).png', width: 600, height: 600 },
-
-    { url: '/download-removebg-preview (4).png', width: 600, height: 600 },
-  ];
-
-  useEffect(() => {
-    const changeImageLoop = () => {
-      setCurrentImage((prevImage) => (prevImage + 1) % imageUrls.length);
-    };
-
-    const intervalId = setInterval(changeImageLoop, 2000); // Change image every 2 seconds
-
-    return () => clearInterval(intervalId); // Clear interval on unmount
-  }, []); // Empty dependency array ensures useEffect runs only once
-
-  const handleNext = () => {
-    setCurrentImage((prevImage) => (prevImage + 1) % imageUrls.length);
-  };
-
   return (
-    <div className="relative bg-gradient-to-r from-sky-400 to-blue-700 mb-8 h-[300px] flex justify-center items-center">
-      <div className="mx-auto px-8 py-12 flex flex-col gap-2 md:flex-row items-center justify-evenly">
-        <div className="mb-8 md:mb-0 text-center">
-          <h1 className="text-2xl lg:text-6xl font-bold text-white mb-4">
-            Best Sales Of The year
-          </h1>
-          <p className="text-sm lg:text-xl text-white mb-2">
-            Enjoy discounts on selected items
-          </p>
-          <p className="text-2xl lg:text-5xl text-orange-400 font-bold">
-            GET 50% OFF
-          </p>
+    <div>
+      {banners.map((banner, index) => (
+        <div
+          key={index}
+          className=" relative select-none bg-gradient-to-r from-[#548DC7] to-[#BF7BB0] mb-8"
+        >
+          <div className=" mx-auto px-8 py-12 flex flex-col gap-2 md:flex-row items-center justify-evenly">
+            <div className="mb-8 md:mb-0 md:text-start text-center">
+              <h1 className="text-4xl md:text-6xl font-bold mb-4 text-[#131921]">
+                {banner.title}
+              </h1>
+              <p className=" text-lg md:text-xl text-[#131921] mb-2">
+                {banner.description}
+              </p>
+              <p className="text-5xl md:text-7xl text-[#F9A024] font-extrabold text-outline">
+                {banner.discount}
+              </p>
+            </div>
+            <div className=" relative md:w-1/3  w-[60%] aspect-video">
+              <Image
+                src={banner.imageSrc}
+                fill
+                alt="Banner Image"
+                className=" object-contain "
+              />
+            </div>
+          </div>
         </div>
-        <div className="w-1/3 max-w-[300px] relative aspect-video">
-          <Image
-            id="myImage"
-            src={imageUrls[currentImage].url}
-            alt="BannerImg"
-            className="object-contain"
-            // Use width and height from imageUrls object for responsive scaling
-            width={imageUrls[currentImage].width}
-            height={imageUrls[currentImage].height}
-          />
-        </div>
-      </div>
-      {/* <button id="myNextButton" onClick={handleNext}>Next Image</button> */}
+      ))}
     </div>
   );
 };

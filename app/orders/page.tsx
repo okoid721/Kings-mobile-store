@@ -1,9 +1,9 @@
-import Containers from '@/app/components/Containers';
-import React from 'react';
-import OrderClient from './OrderClient';
-import { getCurrentUser } from '@/actions/getCurrentUser';
-import NullData from '@/app/components/NullData';
-import getOrderByUserId from '@/actions/getOrderByUserId';
+import Container from "@/app/components/Container";
+import React from "react";
+import OrderClient from "./OrderClient";
+import { getCurrentUser } from "@/actions/getCurrentUser";
+import NullData from "@/app/components/NullData";
+import getOrdersByUserId from "@/actions/getOrdersByUserId";
 
 const Order = async () => {
   const currentUser = await getCurrentUser();
@@ -12,16 +12,16 @@ const Order = async () => {
     return <NullData title="Oops! Access Denied" />;
   }
 
-  const orders = await getOrderByUserId(currentUser.id);
+  const orders = await getOrdersByUserId(currentUser.id);
 
   if (!orders) {
     return <NullData title="No orders yet..." />;
   }
   return (
     <div className="p-8 bg-white text-[#0F1111] select-none ">
-      <Containers>
+      <Container>
         <OrderClient orders={orders} />
-      </Containers>
+      </Container>
     </div>
   );
 };

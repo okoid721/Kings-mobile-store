@@ -1,13 +1,14 @@
-import AdminNav from '../components/admin/AdminNav';
+import React from "react";
+import AdminNav from "../components/admin/AdminNav";
 
 export const metadata = {
-  title: 'Kings-Mobile Admin',
-  description: 'Kings Admin Dashboard',
+  title: "Saler-- Admin Dashboard",
+  description: "Saler Admin Dashboard",
 };
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
+    <div className="text-[#0F1111] select-none ">
       <div>
         <AdminNav />
       </div>

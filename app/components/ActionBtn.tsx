@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { IconType } from 'react-icons';
+import React from "react";
+import { IconType } from "react-icons";
 
 interface ActionBtnProps {
   icon: IconType;
@@ -18,7 +18,7 @@ const ActionBtn: React.FC<ActionBtnProps> = ({
       onClick={onClick}
       disabled={disabled}
       className={`flex items-center justify-center rounded cursor-pointer w-[40px] h-[30px] text-slate-700 border border-slate-400 ${
-        disabled && 'opacity-50 cursor-not-allowed'
+        disabled && "opacity-50 cursor-not-allowed"
       }`}
     >
       <Icon size={18} />

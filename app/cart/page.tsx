@@ -1,16 +1,17 @@
-import Containers from '../components/Containers';
-import CartClient from './CartClient';
-import { getCurrentUser } from '@/actions/getCurrentUser';
+import React from "react";
+import Container from "../components/Container";
+import CartClient from "./CartClient";
+import { getCurrentUser } from "@/actions/getCurrentUser";
 
 const Cart = async () => {
   const currentUser = await getCurrentUser();
-
   return (
-    <div className="  mt-[30px]  p-4 ">
-      <Containers>
+    <div className="pt-8 text-[#0F1111] select-none ">
+      <Container>
         <CartClient currentUser={currentUser} />
-      </Containers>
+      </Container>
     </div>
   );
 };
+
 export default Cart;

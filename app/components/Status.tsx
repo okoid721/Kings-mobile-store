@@ -1,6 +1,6 @@
-'use client';
-import React from 'react';
-import { IconType } from 'react-icons';
+"use client";
+import React from "react";
+import { IconType } from "react-icons";
 interface StatusProps {
   text: string;
   icon: IconType;

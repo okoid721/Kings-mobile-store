@@ -1,17 +1,20 @@
-import Containers from '../components/Containers';
-import FormWrap from '../components/FormWrap';
-import LoginForm from './LoginForm';
-import { getCurrentUser } from '@/actions/getCurrentUser';
+import React from "react";
+import Container from "../components/Container";
+import FormWrap from "../components/FormWrap";
+import LoginForm from "./LoginForm";
+import { getCurrentUser } from "@/actions/getCurrentUser";
 
-const Login = async () => {
+const page = async () => {
   const currentUser = await getCurrentUser();
   return (
-    <Containers>
-      <FormWrap>
-        <LoginForm currentUser={currentUser} />
-      </FormWrap>
-    </Containers>
+    <div className="text-[#0F1111] bg-white select-none">
+      <Container>
+        <FormWrap>
+          <LoginForm currentUser={currentUser} />
+        </FormWrap>
+      </Container>
+    </div>
   );
 };
 
-export default Login;
+export default page;

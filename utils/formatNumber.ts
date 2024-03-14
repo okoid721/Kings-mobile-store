@@ -1,3 +1,3 @@
 export const formatNumber = (digit: number) => {
-  return new Intl.NumberFormat('en-us').format(digit);
+  return new Intl.NumberFormat("en-us").format(digit);
 };

@@ -1,11 +1,11 @@
-import Stripe from 'stripe';
-import prisma from '@/libs/prismadb';
-import { NextResponse } from 'next/server';
-import { getCurrentUser } from '@/actions/getCurrentUser';
-import  {CartProductType}  from '@/app/product/[productId]/ProductDetails';
+import Stripe from "stripe";
+import prisma from "@/libs/prismadb";
+import { NextResponse } from "next/server";
+import { getCurrentUser } from "@/actions/getCurrentUser";
+import type { CartProductType } from "@/app/product/[productId]/ProductDetails";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-  apiVersion: '2023-10-16',
+  apiVersion: "2023-10-16",
 });
 
 const calculateOrderAmount = (items: CartProductType[]) => {
@@ -28,9 +28,9 @@ export async function POST(request: Request) {
   const orderData = {
     user: { connect: { id: currentUser.id } },
     amount: total,
-    currency: 'usd',
-    status: 'pending',
-    deliveryStatus: 'pending',
+    currency: "usd",
+    status: "pending",
+    deliveryStatus: "pending",
     paymentIntentId: payment_intent_id,
     products: items,
   };
@@ -56,7 +56,7 @@ export async function POST(request: Request) {
           where: { paymentIntentId: payment_intent_id },
           data: {
             amount: total,
-            product: items,
+            products: items,
           },
         }),
       ]);
@@ -69,7 +69,7 @@ export async function POST(request: Request) {
     // create the intent
     const paymentIntent = await stripe.paymentIntents.create({
       amount: total,
-      currency: 'usd',
+      currency: "usd",
       automatic_payment_methods: { enabled: true },
     });
     //create the order

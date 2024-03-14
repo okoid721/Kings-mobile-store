@@ -1,41 +1,38 @@
-'use client';
+"use client";
 
-import { Product } from '@prisma/client';
-import React, { useCallback } from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-
-// import Status from "@/app/components/Status";
+import { Product } from "@prisma/client";
+import React, { useCallback } from "react";
+import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import formatPrice from "@/utils/formatPrice";
+import Heading from "@/app/components/Heading";
+import Status from "@/app/components/Status";
 import {
   MdCached,
   MdClose,
   MdDelete,
   MdDone,
   MdRemoveRedEye,
-} from 'react-icons/md';
-// import ActionBtn from "@/app/components/ActionBtn";
-import axios from 'axios';
-import toast from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
-import { deleteObject, getStorage, ref } from 'firebase/storage';
-import firebaseApp from '@/libs/firebase';
-import { formatPrice } from '@/utils/formatPrice';
-import Haeding from '@/app/components/Haeding';
-import Status from '@/app/components/Status';
-import ActionBtn from '@/app/components/ActionBtn';
+} from "react-icons/md";
+import ActionBtn from "@/app/components/ActionBtn";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { deleteObject, getStorage, ref } from "firebase/storage";
+import firebaseApp from "@/libs/firebase";
 
-interface ManageProductClientProps {
-  product: Product[];
+interface ManageProductsClientProps {
+  products: Product[];
 }
 
-const ManageProductClient: React.FC<ManageProductClientProps> = ({
-  product,
+const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
+  products,
 }) => {
   const router = useRouter();
   const storage = getStorage(firebaseApp);
   let rows: any = [];
 
-  if (product) {
-    rows = product.map((product) => {
+  if (products) {
+    rows = products.map((product) => {
       return {
         id: product.id,
         name: product.name,
@@ -49,11 +46,11 @@ const ManageProductClient: React.FC<ManageProductClientProps> = ({
   }
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 100 },
-    { field: 'name', headerName: 'Name', width: 200 },
+    { field: "id", headerName: "ID", width: 100 },
+    { field: "name", headerName: "Name", width: 200 },
     {
-      field: 'price',
-      headerName: 'Price(USD)',
+      field: "price",
+      headerName: "Price(USD)",
       width: 145,
       renderCell: (params) => {
         return (
@@ -61,11 +58,11 @@ const ManageProductClient: React.FC<ManageProductClientProps> = ({
         );
       },
     },
-    { field: 'category', headerName: 'Category', width: 145 },
-    { field: 'brand', headerName: 'Brand', width: 145 },
+    { field: "category", headerName: "Category", width: 145 },
+    { field: "brand", headerName: "Brand", width: 145 },
     {
-      field: 'inStock',
-      headerName: 'inStock',
+      field: "inStock",
+      headerName: "inStock",
       width: 120,
       renderCell: (params) => {
         return (
@@ -90,12 +87,12 @@ const ManageProductClient: React.FC<ManageProductClientProps> = ({
       },
     },
     {
-      field: 'action',
-      headerName: 'Actions',
-      width: 215,
+      field: "action",
+      headerName: "Actions",
+      width: 240,
       renderCell: (params) => {
         return (
-          <div className="flex justify-between gap-2 w-full">
+          <div className="flex justify-between gap-4 w-full">
             <ActionBtn
               icon={MdCached}
               onClick={() => {
@@ -122,22 +119,22 @@ const ManageProductClient: React.FC<ManageProductClientProps> = ({
 
   const handleToggleStock = useCallback((id: string, inStock: boolean) => {
     axios
-      .put('/api/product', {
+      .put("/api/product", {
         id,
         inStock: !inStock,
       })
       .then((res) => {
-        toast.success('Product status changed');
+        toast.success("Product status changed");
         router.refresh();
       })
       .catch((error) => {
-        toast.error('Oops! Something went wrong');
+        toast.error("Oops! Something went wrong");
         console.log(error);
       });
   }, []);
 
   const handleDelete = useCallback(async (id: string, images: any[]) => {
-    toast('Deleting product, please wait.....');
+    toast("Deleting product, please wait.....");
 
     const handleImageDelete = async () => {
       try {
@@ -145,11 +142,11 @@ const ManageProductClient: React.FC<ManageProductClientProps> = ({
           if (item.image) {
             const imageRef = ref(storage, item.image);
             await deleteObject(imageRef);
-            console.log('Successfully deleted Image!', item.image);
+            console.log("Successfully deleted Image!", item.image);
           }
         }
       } catch (error) {
-        return console.log('Deleting images error', error);
+        return console.log("Deleting images error", error);
       }
     };
 
@@ -158,7 +155,7 @@ const ManageProductClient: React.FC<ManageProductClientProps> = ({
     axios
       .delete(`/api/product/${id}`)
       .then((res) => {
-        toast.success('Product deleted successfully ');
+        toast.success("Product deleted successfully ");
         router.refresh();
       })
       .catch((error) => {
@@ -166,12 +163,12 @@ const ManageProductClient: React.FC<ManageProductClientProps> = ({
       });
   }, []);
   return (
-    <div className=" max-w-[1200px] mx-auto text-xl">
+    <div className=" max-w-[1150px] m-auto text-xl">
       <div className=" mb-4 mt-8">
-        <Haeding title="Manange product" />
+        <Heading title="Manange Products" />
       </div>
 
-      <div style={{ height: 600, width: '100%' }}>
+      <div style={{ height: 600, width: "100%" }}>
         <DataGrid
           rows={rows}
           columns={columns}
@@ -189,4 +186,4 @@ const ManageProductClient: React.FC<ManageProductClientProps> = ({
   );
 };
 
-export default ManageProductClient;
+export default ManageProductsClient;

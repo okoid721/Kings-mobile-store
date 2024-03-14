@@ -1,13 +1,11 @@
-import { product } from '@/utils/product';
-import React from 'react';
-// import { product } from "@/utils/products";
-import ProductDetails from './ProductDetails';
-import ListRating from './ListRating';
-import getProductById from '@/actions/getProductById';
-import NullData from '@/app/components/NullData';
-import AddRating from './AddRating';
-import { getCurrentUser } from '@/actions/getCurrentUser';
-import Containers from '@/app/components/Containers';
+import Container from "@/app/components/Container";
+import React from "react";
+import ProductDetails from "./ProductDetails";
+import ListRating from "./ListRating";
+import getProductById from "@/actions/getProductById";
+import NullData from "@/app/components/NullData";
+import AddRating from "./AddRating";
+import { getCurrentUser } from "@/actions/getCurrentUser";
 
 interface IPrams {
   productId: string;
@@ -21,13 +19,13 @@ const Product = async ({ params }: { params: IPrams }) => {
 
   return (
     <div className="text-[#0F1111] select-none pt-8">
-      <Containers>
+      <Container>
         <ProductDetails product={product} />
         <div className="flex flex-col mt-20 gap-4">
-          {/* <AddRating product={product} user={user} /> */}
+          <AddRating product={product} user={user} />
           <ListRating product={product} />
         </div>
-      </Containers>
+      </Container>
     </div>
   );
 };

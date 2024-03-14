@@ -1,5 +1,5 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
 
 import {
   Chart as ChartJS,
@@ -8,8 +8,8 @@ import {
   Tooltip,
   LinearScale,
   Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
 ChartJS.register(BarElement, CategoryScale, Tooltip, LinearScale, Legend);
 
@@ -30,9 +30,9 @@ const BarGraph: React.FC<BarGraphProps> = ({ data }) => {
     labels: labels,
     datasets: [
       {
-        label: 'Your King Mobile Sale Amount',
+        label: "Your Saler Sale Amount",
         data: amounts,
-        backgroundColor: '#F9A024',
+        backgroundColor: "#F9A024",
         borderWidth: 1,
       },
     ],

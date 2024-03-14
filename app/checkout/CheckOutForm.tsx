@@ -1,19 +1,16 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-
+"use client";
+import React, { useEffect, useState } from "react";
+import { useCart } from "../hook/useCart";
 import {
   AddressElement,
   PaymentElement,
   useElements,
   useStripe,
-} from '@stripe/react-stripe-js';
-
-import toast from 'react-hot-toast';
-
-import Button from '../components/Button';
-import { formatPrice } from '@/utils/formatPrice';
-import Haeding from '../components/Haeding';
-import { useCart } from '../hooks/useCart';
+} from "@stripe/react-stripe-js";
+import formatPrice from "@/utils/formatPrice";
+import toast from "react-hot-toast";
+import Heading from "../components/Heading";
+import Button from "../components/Button";
 
 interface CheckOutFormProps {
   clientSecret: string;
@@ -52,11 +49,11 @@ const CheckOutForm: React.FC<CheckOutFormProps> = ({
     stripe
       .confirmPayment({
         elements,
-        redirect: 'if_required',
+        redirect: "if_required",
       })
       .then((result) => {
         if (!result.error) {
-          toast.success('Chekout Success');
+          toast.success("Chekout Success");
 
           handleClearCart();
           handlesetPaymentSuccess(true);
@@ -71,22 +68,22 @@ const CheckOutForm: React.FC<CheckOutFormProps> = ({
     <>
       <form onSubmit={handleSubmit} id="payment-form">
         <div className="mb-6 ">
-          <Haeding title="Enter your details to complete checkout" />
+          <Heading title="Enter your details to complete checkout" />
         </div>
         <h2 className=" font-semibold mb-2">Address Information</h2>
         <AddressElement
           options={{
-            mode: 'shipping',
+            mode: "shipping",
           }}
         />
         <h2 className=" font-semibold mt-4 mb-2">Payment Information</h2>
 
-        <PaymentElement id="payment-element" options={{ layout: 'tabs' }} />
+        <PaymentElement id="payment-element" options={{ layout: "tabs" }} />
         <div className="py-4 text-center text-slate-700 text-4xl font-bold">
           Total: {formattedPrice}
         </div>
         <Button
-          label={loading ? 'Processing...' : 'Pay now!'}
+          label={loading ? "Processing..." : "Pay now!"}
           disabled={loading || !stripe || !elements}
           onClick={() => {}}
         />

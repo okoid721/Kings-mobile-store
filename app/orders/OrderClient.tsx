@@ -1,23 +1,22 @@
-'use client';
+"use client";
 
-import { Order, Product, User } from '@prisma/client';
-import React, { useCallback } from 'react';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-
-import Status from '@/app/components/Status';
+import { Order, Product, User } from "@prisma/client";
+import React, { useCallback } from "react";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import formatPrice from "@/utils/formatPrice";
+import Heading from "@/app/components/Heading";
+import Status from "@/app/components/Status";
 import {
   MdAccessTimeFilled,
   MdDeliveryDining,
   MdDone,
   MdRemoveRedEye,
-} from 'react-icons/md';
-import ActionBtn from '@/app/components/ActionBtn';
-import axios from 'axios';
-import toast from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
-import moment from 'moment';
-import { formatPrice } from '@/utils/formatPrice';
-import Haeding from '../components/Haeding';
+} from "react-icons/md";
+import ActionBtn from "@/app/components/ActionBtn";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import moment from "moment";
 
 interface OrderClientProps {
   orders: ExtendedOrder[];
@@ -45,11 +44,11 @@ const OrderClient: React.FC<OrderClientProps> = ({ orders }) => {
   }
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 150 },
-    { field: 'customer', headerName: 'Customer Name', width: 150 },
+    { field: "id", headerName: "ID", width: 150 },
+    { field: "customer", headerName: "Customer Name", width: 150 },
     {
-      field: 'amount',
-      headerName: 'Amount(USD)',
+      field: "amount",
+      headerName: "Amount(USD)",
       width: 160,
       renderCell: (params) => {
         return (
@@ -59,20 +58,20 @@ const OrderClient: React.FC<OrderClientProps> = ({ orders }) => {
     },
 
     {
-      field: 'paymentStatus',
-      headerName: 'Payment Status',
+      field: "paymentStatus",
+      headerName: "Payment Status",
       width: 180,
       renderCell: (params) => {
         return (
           <div>
-            {params.row.paymentStatus === 'pending' ? (
+            {params.row.paymentStatus === "pending" ? (
               <Status
                 text="pending"
                 icon={MdAccessTimeFilled}
                 bg="bg-slate-200"
                 color="text-slate-700"
               />
-            ) : params.row.paymentStatus === 'complete' ? (
+            ) : params.row.paymentStatus === "complete" ? (
               <Status
                 text="completed"
                 icon={MdDone}
@@ -87,27 +86,27 @@ const OrderClient: React.FC<OrderClientProps> = ({ orders }) => {
       },
     },
     {
-      field: 'deliveryStatus',
-      headerName: 'Delivery Status',
+      field: "deliveryStatus",
+      headerName: "Delivery Status",
       width: 170,
       renderCell: (params) => {
         return (
           <div>
-            {params.row.deliveryStatus === 'pending' ? (
+            {params.row.deliveryStatus === "pending" ? (
               <Status
                 text="pending"
                 icon={MdAccessTimeFilled}
                 bg="bg-slate-200"
                 color="text-slate-700"
               />
-            ) : params.row.deliveryStatus === 'dispatched' ? (
+            ) : params.row.deliveryStatus === "dispatched" ? (
               <Status
                 text="dispatched"
                 icon={MdDeliveryDining}
                 bg="bg-purple-200"
                 color="text-purple-700"
               />
-            ) : params.row.deliveryStatus === 'delivered' ? (
+            ) : params.row.deliveryStatus === "delivered" ? (
               <Status
                 text="delivered"
                 icon={MdDone}
@@ -123,13 +122,13 @@ const OrderClient: React.FC<OrderClientProps> = ({ orders }) => {
     },
 
     {
-      field: 'date',
-      headerName: 'Date',
+      field: "date",
+      headerName: "Date",
       width: 120,
     },
     {
-      field: 'action',
-      headerName: 'Actions',
+      field: "action",
+      headerName: "Actions",
       width: 140,
       renderCell: (params) => {
         return (
@@ -149,10 +148,10 @@ const OrderClient: React.FC<OrderClientProps> = ({ orders }) => {
   return (
     <div className=" max-w-[1150px] m-auto text-xl">
       <div className=" mb-4 mt-8">
-        <Haeding title="Orders" />
+        <Heading title="Orders" />
       </div>
 
-      <div style={{ height: 600, width: '100%' }}>
+      <div style={{ height: 600, width: "100%" }}>
         <DataGrid
           rows={rows}
           columns={columns}

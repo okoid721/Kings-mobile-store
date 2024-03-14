@@ -1,27 +1,25 @@
-'use client';
+"use client";
+import { ImageType } from "@/app/admin/add-products/AddProductForm";
+import React, { useCallback } from "react";
+import { useDropzone } from "react-dropzone";
 
-import { ImageType } from '@/app/admin/add-product/AddProductForm';
-import { useCallback } from 'react';
-import { useDropzone } from 'react-dropzone';
-
-interface SelectedImageProps {
+interface SelectImageProps {
   item?: ImageType;
   handleFileChange: (value: File) => void;
 }
 
-const SelectedImage: React.FC<SelectedImageProps> = ({
+const SelectImage: React.FC<SelectImageProps> = ({
   item,
   handleFileChange,
 }) => {
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    // Do something with the files
     if (acceptedFiles.length > 0) {
       handleFileChange(acceptedFiles[0]);
     }
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: { 'image/': ['.jpeg', '.png'] },
+    accept: { "image/*": [".jpeg", ".png"] },
   });
   return (
     <div
@@ -38,4 +36,4 @@ const SelectedImage: React.FC<SelectedImageProps> = ({
   );
 };
 
-export default SelectedImage;
+export default SelectImage;

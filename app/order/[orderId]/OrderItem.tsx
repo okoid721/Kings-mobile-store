@@ -1,11 +1,9 @@
-'use client';
-
-import { formatPrice } from '@/utils/formatPrice';
-import { truncateText } from '@/utils/truncateText';
-
-import { CartProductType } from '@prisma/client';
-import Image from 'next/image';
-import React from 'react';
+"use client";
+import formatPrice from "@/utils/formatPrice";
+import truncateText from "@/utils/truncateText";
+import { CartProductType } from "@prisma/client";
+import Image from "next/image";
+import React from "react";
 
 interface OrderItemProps {
   item: CartProductType;
