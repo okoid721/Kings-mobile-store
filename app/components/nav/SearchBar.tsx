@@ -1,7 +1,7 @@
 'use client';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import queryString from 'query-string';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { FieldValues, SubmitErrorHandler, useForm } from 'react-hook-form';
 
 const SearchBar = () => {
@@ -33,6 +33,13 @@ const SearchBar = () => {
     router.push(url);
     reset();
   };
+
+  // Move the useSearchParams hook here
+  const params = useSearchParams();
+
+  // Use the params object to get the searchTerm query parameter
+  const searchTerm = params?.get('searchTerm');
+
   return (
     <div className="flex items-center">
       <input
@@ -41,10 +48,11 @@ const SearchBar = () => {
         type="text"
         placeholder="Explore Kings.io"
         className="p-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-[0.5px] focus:border-slate-500 w-80 text-black"
+        defaultValue={searchTerm}
       />
       <button
         onClick={handleSubmit(onSubmit)}
-        className=" bg-slate-700 hover:opacity-80 text-white p-[9px] rounded-r-md"
+        className=" bg-blue-700 hover:opacity-80 text-black p-[9px] rounded-r-md"
       >
         Search
       </button>

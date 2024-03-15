@@ -26,7 +26,7 @@ const NavBar = async () => {
               Kings.io
             </Link>
             <div className="hidden md:block">
-              <Suspense>
+              <Suspense fallback={<div>Loading search bar...</div>}>
                 <SearchBar />
               </Suspense>
             </div>
@@ -37,7 +37,9 @@ const NavBar = async () => {
           </div>
         </Container>
       </div>
-      <Categories />
+      <Suspense fallback={<div>Loading categories...</div>}>
+        <Categories />
+      </Suspense>
     </div>
   );
 };
