@@ -1,4 +1,4 @@
-import prisma from "@/libs/prismadb";
+import prisma from '@/libs/prismadb';
 
 export interface IProductParams {
   category?: string | null;
@@ -11,7 +11,7 @@ export default async function getProducts(params: IProductParams) {
     let searchString = searchTerm;
 
     if (!searchTerm) {
-      searchString = "";
+      searchString = '';
     }
 
     let query: any = {};
@@ -26,11 +26,11 @@ export default async function getProducts(params: IProductParams) {
           {
             name: {
               contains: searchString,
-              mode: "insensitive",
+              mode: 'insensitive',
             },
             description: {
               contains: searchString,
-              mode: "insensitive",
+              mode: 'insensitive',
             },
           },
         ],
@@ -41,7 +41,7 @@ export default async function getProducts(params: IProductParams) {
             user: true,
           },
           orderBy: {
-            createdDate: "desc",
+            createdAt: 'desc',
           },
         },
       },
