@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useCart } from "../hook/useCart";
-import Link from "next/link";
-import { FaRegArrowAltCircleLeft } from "react-icons/fa";
-import Heading from "../components/Heading";
-import Button from "../components/Button";
-import ItemContent from "./ItemContent";
-import formatPrice from "@/utils/formatPrice";
-import { RiSecurePaymentLine } from "react-icons/ri";
-import { SafeUser } from "@/types";
-import { useRouter } from "next/navigation";
-import { Suspense } from "react"; // Import Suspense
+import React from 'react';
+import { useCart } from '../hook/useCart';
+import Link from 'next/link';
+import { FaRegArrowAltCircleLeft } from 'react-icons/fa';
+import Heading from '../components/Heading';
+import Button from '../components/Button';
+import ItemContent from './ItemContent';
+import formatPrice from '@/utils/formatPrice';
+import { RiSecurePaymentLine } from 'react-icons/ri';
+import { SafeUser } from '@/types';
+import { useRouter } from 'next/navigation';
+import { Suspense } from 'react'; // Import Suspense
 
 interface CartClientprops {
   currentUser?: SafeUser | null;
@@ -25,7 +25,7 @@ const CartClient: React.FC<CartClientprops> = ({ currentUser }) => {
       <div className="flex flex-col items-center">
         <div className=" text-2xl">Your cart is empty</div>
         <div>
-          <Link href={"/"} className=" flex items-center gap-1 mt-2">
+          <Link href={'/'} className=" flex items-center gap-1 mt-2">
             <FaRegArrowAltCircleLeft />
             <span>Start Shopping</span>
           </Link>
@@ -40,7 +40,7 @@ const CartClient: React.FC<CartClientprops> = ({ currentUser }) => {
 
         {/* <div className="bg-[#F89F24] w-fit p-4 my-5 rounded-lg h-fit"> */}
         <Link
-          href={"/"}
+          href={'/'}
           className="bg-[#131921] w-fit p-2 my-5 rounded-lg h-fit flex items-center text-white gap-1"
         >
           <FaRegArrowAltCircleLeft />
@@ -71,20 +71,6 @@ const CartClient: React.FC<CartClientprops> = ({ currentUser }) => {
                 <span>Subtotal</span>
                 <span>{formatPrice(cartTotalAmount)}</span>
               </div>
-              <div className="flex gap-2 items-center">
-                <span>We accept:</span>
-                <img
-                  src="./mastercard.png"
-                  className="w-[30px]"
-                  alt="mastercard"
-                />
-                <img src="./visa.png" className="w-[30px]" alt="mastercard" />
-                <img
-                  src="./banktransfer.png"
-                  className="w-[30px]"
-                  alt="mastercard"
-                />
-              </div>
 
               <div className=" text-[12px] flex items-center gap-1">
                 <RiSecurePaymentLine className="text-[#F89F24] text-[25px]" />
@@ -94,13 +80,13 @@ const CartClient: React.FC<CartClientprops> = ({ currentUser }) => {
               </div>
               <Button
                 label={
-                  currentUser ? "Continue to Checkout" : "Login to Checkout"
+                  currentUser ? 'Continue to Checkout' : 'Login to Checkout'
                 }
                 outline={currentUser ? false : true}
                 onClick={() => {
                   currentUser
-                    ? router.push("/checkout")
-                    : router.push("/login");
+                    ? router.push('/checkout')
+                    : router.push('/login');
                 }}
               />
 

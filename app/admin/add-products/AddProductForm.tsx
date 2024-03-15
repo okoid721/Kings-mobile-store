@@ -1,26 +1,26 @@
-"use client";
+'use client';
 
-import Button from "@/app/components/Button";
-import Heading from "@/app/components/Heading";
-import CategoryInput from "@/app/components/inputs/CategoryInput";
-import CustomCheckbox from "@/app/components/inputs/CustomCheckbox";
-import Input from "@/app/components/inputs/Input";
-import SelectColor from "@/app/components/inputs/SelectColor";
-import TextArea from "@/app/components/inputs/TextArea";
-import firebaseApp from "@/libs/firebase";
-import { categories } from "@/utils/Categories";
-import { colors } from "@/utils/Colors";
-import React, { useCallback, useEffect, useState } from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import Button from '@/app/components/Button';
+import Heading from '@/app/components/Heading';
+import CategoryInput from '@/app/components/inputs/CategoryInput';
+import CustomCheckbox from '@/app/components/inputs/CustomCheckbox';
+import Input from '@/app/components/inputs/Input';
+import SelectColor from '@/app/components/inputs/SelectColor';
+import TextArea from '@/app/components/inputs/TextArea';
+import firebaseApp from '@/libs/firebase';
+import { categories } from '@/utils/Categories';
+import { colors } from '@/utils/Colors';
+import React, { useCallback, useEffect, useState } from 'react';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import {
   getDownloadURL,
   getStorage,
   ref,
   uploadBytesResumable,
-} from "firebase/storage";
-import toast from "react-hot-toast";
-import axios from "axios";
-import { useRouter } from "next/navigation";
+} from 'firebase/storage';
+import toast from 'react-hot-toast';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export type ImageType = {
   color: string;
@@ -51,19 +51,19 @@ const AddProductForm = () => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      name: "",
-      description: "",
-      price: "",
-      brand: "",
-      category: "",
+      name: '',
+      description: '',
+      price: '',
+      brand: '',
+      category: '',
       inStock: false,
       images: [],
-      reviews: "",
+      reviews: '',
     },
   });
 
   useEffect(() => {
-    setCustomValue("images", images);
+    setCustomValue('images', images);
   }, [images]);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const AddProductForm = () => {
   }, [isProductCreated]);
 
   const onsubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log("Product Data", data);
+    console.log('Product Data', data);
 
     // upload images to firebase
     //save procuct to mongodb
@@ -84,43 +84,43 @@ const AddProductForm = () => {
 
     if (!data.category) {
       setLoading(false);
-      return toast.error("Category is not selected");
+      return toast.error('Category is not selected');
     }
 
     if (!data.images || data.images.length === 0) {
       setLoading(false);
-      return toast.error("No iamge was selected");
+      return toast.error('No image was selected');
     }
 
     const handleImageUpload = async () => {
-      toast("Creating product, please wait....");
+      toast('Creating product, please wait....');
       try {
         for (const item of data.images) {
           if (item.image) {
-            const fileName = new Date().getTime() + "-" + item.image.name;
+            const fileName = new Date().getTime() + '-' + item.image.name;
             const storage = getStorage(firebaseApp);
             const storageRef = ref(storage, `products/${fileName}`);
             const uploadTask = uploadBytesResumable(storageRef, item.image);
 
             await new Promise<void>((resolve, reject) => {
               uploadTask.on(
-                "state_changed",
+                'state_changed',
                 (snapshot) => {
                   const progress =
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                  console.log("Upload is " + progress + "% done");
+                  console.log('Upload is ' + progress + '% done');
                   switch (snapshot.state) {
-                    case "paused":
-                      console.log("Upload is paused");
+                    case 'paused':
+                      console.log('Upload is paused');
                       break;
-                    case "running":
-                      console.log("Upload is running");
+                    case 'running':
+                      console.log('Upload is running');
                       break;
                   }
                 },
                 (error) => {
                   //Handle unsucessful uploads
-                  console.log("Upload error", error);
+                  console.log('Upload error', error);
                   reject(error);
                 },
                 () => {
@@ -130,11 +130,11 @@ const AddProductForm = () => {
                         ...item,
                         image: downloadURL,
                       });
-                      console.log("File available at ", downloadURL);
+                      console.log('File available at ', downloadURL);
                       resolve();
                     })
                     .catch((error) => {
-                      console.log("Error getting the downloadable URL", error);
+                      console.log('Error getting the downloadable URL', error);
                       reject(error);
                     });
                 }
@@ -144,8 +144,8 @@ const AddProductForm = () => {
         }
       } catch (error) {
         setLoading(false);
-        console.log("Error handling image uploads", error);
-        return toast.error("Error handling image uploads");
+        console.log('Error handling image uploads', error);
+        return toast.error('Error handling image uploads');
       }
     };
 
@@ -153,21 +153,21 @@ const AddProductForm = () => {
     const productData = { ...data, images: uploadedImages };
 
     axios
-      .post("/api/product", productData)
+      .post('/api/product', productData)
       .then(() => {
-        toast.success("Product created");
+        toast.success('Product created');
         setIsProductCreated(true);
         router.refresh();
       })
       .catch((error) => {
-        toast.error("Something went wrong saving the product to the db");
+        toast.error('Something went wrong saving the product to the db');
       })
       .finally(() => {
         setLoading(false);
       });
   };
 
-  const category = watch("category");
+  const category = watch('category');
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value),
       {
@@ -241,7 +241,7 @@ const AddProductForm = () => {
       />
 
       <CustomCheckbox
-        id={"inStock"}
+        id={'inStock'}
         register={register}
         required={true}
         label="This Product is in stock"
@@ -251,13 +251,13 @@ const AddProductForm = () => {
         <div className="mb-2 font-semibold">Select a Category</div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-[50vh] overflow-y-auto">
           {categories.map((item) => {
-            if (item.label === "All") {
+            if (item.label === 'All') {
               return null;
             }
             return (
               <div key={item.label} className="col-span">
                 <CategoryInput
-                  onClick={(category) => setCustomValue("category", category)}
+                  onClick={(category) => setCustomValue('category', category)}
                   selected={category === item.label}
                   label={item.label}
                   icon={item.icon}
@@ -294,7 +294,7 @@ const AddProductForm = () => {
         </div>
       </div>
       <Button
-        label={loading ? "Loading..." : "Add Products"}
+        label={loading ? 'Loading...' : 'Add Products'}
         onClick={handleSubmit(onsubmit)}
       />
     </>

@@ -20,7 +20,7 @@ const NavBar = async () => {
           <div className="flex items-center justify-between gap-3 md:gap-0">
             <Link
               href="/"
-              className={`${redressed.className} text-3xl md:text-5xl font-bold text-[#F9A024]`}
+              className={`${redressed.className} text-3xl md:text-5xl font-bold text-blue-400`}
             >
               Kings.io
             </Link>

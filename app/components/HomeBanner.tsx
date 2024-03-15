@@ -1,14 +1,12 @@
-"use client";
-
-import Image from "next/image";
-import React from "react";
+'use client';
+import React from 'react';
 
 const banners = [
   {
-    title: "Gadget Bazaar!",
-    description: "Explore our vast collection of gadgets.",
-    discount: "SAVE UPTO 30%",
-    imageSrc: "/banner.png",
+    title: 'Gadget King',
+    description: 'Live it Love it.',
+    discount: 'SAVE UPTO 20%',
+    imageSrc: '/banner.png',
   },
   // {
   //   title: "Tech Wonderland",
@@ -42,27 +40,22 @@ const HomeBanner = () => {
       {banners.map((banner, index) => (
         <div
           key={index}
-          className=" relative select-none bg-gradient-to-r from-[#548DC7] to-[#BF7BB0] mb-8"
+          className=" relative select-none bg-gradient-to-r from-[#548DC7] to-blue-500 mb-8"
         >
           <div className=" mx-auto px-8 py-12 flex flex-col gap-2 md:flex-row items-center justify-evenly">
             <div className="mb-8 md:mb-0 md:text-start text-center">
-              <h1 className="text-4xl md:text-6xl font-bold mb-4 text-[#131921]">
+              <h1 className="text-4xl md:text-6xl font-bold mb-4 text-[#ffff]">
                 {banner.title}
               </h1>
-              <p className=" text-lg md:text-xl text-[#131921] mb-2">
+              <p className=" text-lg md:text-xl text-[#Ffff] mb-2">
                 {banner.description}
               </p>
-              <p className="text-5xl md:text-7xl text-[#F9A024] font-extrabold text-outline">
+              <p className="text-5xl md:text-7xl text-[#131921] font-extrabold text-outline">
                 {banner.discount}
               </p>
             </div>
             <div className=" relative md:w-1/3  w-[60%] aspect-video">
-              <Image
-                src={banner.imageSrc}
-                fill
-                alt="Banner Image"
-                className=" object-contain "
-              />
+              {banner.imageSrc}
             </div>
           </div>
         </div>

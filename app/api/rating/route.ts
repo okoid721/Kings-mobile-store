@@ -1,6 +1,6 @@
-import { getCurrentUser } from "@/actions/getCurrentUser";
-import { Review } from "@prisma/client";
-import { NextResponse } from "next/server";
+import { getCurrentUser } from '@/actions/getCurrentUser';
+import { Review } from '@prisma/client';
+import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
@@ -14,8 +14,8 @@ export async function POST(request: Request) {
 
   const deliveredOrder = currentUser?.orders.some(
     (order) =>
-      order.products.find((item) => item.id === product.id) &&
-      order.deliveryStatus === "delivered"
+      order.product.find((item) => item.id === product.id) &&
+      order.deliveryStatus === 'delivered'
   );
 
   const userReview = product?.reviews.find((review: Review) => {

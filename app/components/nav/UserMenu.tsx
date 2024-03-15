@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import React, { useCallback, useState } from "react";
-import Avatar from "../Avatar";
-import { FaCaretDown } from "react-icons/fa6";
-import Link from "next/link";
-import MenuItems from "./MenuItems";
-import { signOut } from "next-auth/react";
-import BkDrop from "./BkDrop";
-import { useCart } from "@/app/hook/useCart";
-import { SafeUser } from "@/types";
+import React, { useCallback, useState } from 'react';
+import Avatar from '../Avatar';
+import { FaCaretDown } from 'react-icons/fa6';
+import Link from 'next/link';
+import MenuItems from './MenuItems';
+import { signOut } from 'next-auth/react';
+import BkDrop from './BkDrop';
+import { useCart } from '@/app/hook/useCart';
+import { SafeUser } from '@/types';
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
@@ -21,11 +21,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     setIsOpen((prev) => !prev);
   }, []);
   const fullName = currentUser?.name;
-  const firstName = fullName?.split(" ")[0];
+  const firstName = fullName?.split(' ')[0];
 
   return (
     <>
-      <div className="relative z-30 bg-[#F9A024] rounded-full cursor-pointer">
+      <div className="relative z-30 bg-blue-500 rounded-full cursor-pointer">
         <div
           className="flex flex-row items-center justify-center px-4 p-3 gap-1 hover:shadow-md transition"
           onClick={toggleOpen}
@@ -38,10 +38,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className="absolute rounded-md shadow-md w-[170px] bg-white text-black overflow-hidden right-0 top-12 text-sm flex flex-col cursor-pointer">
             {currentUser ? (
               <div>
-                <Link href={"/orders"}>
+                <Link href={'/orders'}>
                   <MenuItems onClick={toggleOpen}>Your Orders</MenuItems>
                 </Link>
-                <Link href={"/admin"}>
+                <Link href={'/admin'}>
                   <MenuItems onClick={toggleOpen}>Admin Dashboard</MenuItems>
                 </Link>
                 <hr />
@@ -58,10 +58,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               </div>
             ) : (
               <div>
-                <Link href={"/login"}>
+                <Link href={'/login'}>
                   <MenuItems onClick={toggleOpen}>Log in</MenuItems>
                 </Link>
-                <Link href={"/register"}>
+                <Link href={'/register'}>
                   <MenuItems onClick={toggleOpen}>Create an account</MenuItems>
                 </Link>
               </div>
