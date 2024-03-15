@@ -17,7 +17,7 @@ export default async function getProductById(params: IParams) {
             user: true,
           },
           orderBy: {
-            createdDate: "desc",
+            createdAt: "desc",
           },
         },
       },
