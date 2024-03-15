@@ -1,16 +1,16 @@
-"use client";
-import Button from "@/app/components/Button";
-import Heading from "@/app/components/Heading";
-import Input from "@/app/components/inputs/Input";
+'use client';
+import Button from '@/app/components/Button';
+import Heading from '@/app/components/Heading';
+import Input from '@/app/components/inputs/Input';
 
-import { SafeUser } from "@/types";
-import { Rating } from "@mui/material";
-import { Order, Product, Review } from "@prisma/client";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { SafeUser } from '@/types';
+import { Rating } from '@mui/material';
+import { Order, Product, Review } from '@prisma/client';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 interface AddRatingProps {
   product: Product & {
@@ -34,7 +34,7 @@ const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      comment: "",
+      comment: '',
       rating: 0,
     },
   });
@@ -51,19 +51,19 @@ const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
     setLoading(true);
     if (data.rating === 0) {
       setLoading(false);
-      return toast.error("No rating selected");
+      return toast.error('No rating selected');
     }
     const ratingData = { ...data, userId: user?.id, product: product };
 
     axios
-      .post("/api/rating", ratingData)
+      .post('/api/rating', ratingData)
       .then(() => {
-        toast.success("Rating Sumbitted");
+        toast.success('Rating Sumbitted');
         router.refresh();
         reset();
       })
       .catch((error) => {
-        toast.error("Something went wrong");
+        toast.error('Something went wrong');
       })
       .finally(() => {
         setLoading(false);
@@ -74,8 +74,8 @@ const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
 
   const deliveredOrder = user?.orders.some(
     (order) =>
-      order.products.find((item) => item.id === product.id) &&
-      order.deliveryStatus === "delivered"
+      order.product.find((item) => item.id === product.id) &&
+      order.deliveryStatus === 'delivered'
   );
 
   const userReview = product?.reviews.find((review: Review) => {
@@ -89,7 +89,7 @@ const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
       <Heading title="Rate this product" />
       <Rating
         onChange={(event, newValue) => {
-          setCustomValue("rating", newValue);
+          setCustomValue('rating', newValue);
         }}
       />
       <Input
@@ -102,7 +102,7 @@ const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
         autoFocus={false}
       />
       <Button
-        label={loading ? "Loading" : "Rate Product"}
+        label={loading ? 'Loading' : 'Rate Product'}
         onClick={handleSubmit(onSubmit)}
       />
     </div>
