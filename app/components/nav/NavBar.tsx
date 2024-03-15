@@ -7,6 +7,7 @@ import UserMenu from './UserMenu';
 import { getCurrentUser } from '@/actions/getCurrentUser';
 import Categories from './Categories';
 import SearchBar from './SearchBar';
+import { Suspense } from 'react';
 
 const redressed = Shadows_Into_Light({ subsets: ['latin'], weight: ['400'] });
 
@@ -25,7 +26,9 @@ const NavBar = async () => {
               Kings.io
             </Link>
             <div className="hidden md:block">
-              <SearchBar />
+              <Suspense>
+                <SearchBar />
+              </Suspense>
             </div>
             <div className="flex items-center gap-8 md:gap-12">
               <CartCount />
