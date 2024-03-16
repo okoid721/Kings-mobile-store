@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useRouter, useSearchParams } from "next/navigation";
-import queryString from "query-string";
-import React, { useCallback } from "react";
-import { IconType } from "react-icons";
+import { useRouter, useSearchParams } from 'next/navigation';
+import queryString from 'query-string';
+import React, { useCallback } from 'react';
+import { IconType } from 'react-icons';
 
 interface CategoriesItemsProps {
   label: string;
@@ -19,8 +19,8 @@ const CategoriesItems: React.FC<CategoriesItemsProps> = ({
   const params = useSearchParams();
 
   const handleClick = useCallback(() => {
-    if (label === "All") {
-      router.push("/");
+    if (label === 'All') {
+      router.push('/');
     } else {
       let currentQuery = {};
 
@@ -35,7 +35,7 @@ const CategoriesItems: React.FC<CategoriesItemsProps> = ({
 
       const url = queryString.stringifyUrl(
         {
-          url: "/",
+          url: '/',
           query: updatedQuery,
         },
         {
@@ -51,8 +51,8 @@ const CategoriesItems: React.FC<CategoriesItemsProps> = ({
       onClick={handleClick}
       className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-slate-800 transition cursor-pointer ${
         selected
-          ? "border-slate-800 text-slate-800"
-          : "border-transparent text-slate-500"
+          ? 'border-slate-800 text-slate-800'
+          : 'border-transparent text-slate-500'
       }`}
     >
       <Icon size={20} />
