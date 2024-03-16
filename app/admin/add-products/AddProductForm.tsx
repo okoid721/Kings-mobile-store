@@ -3,7 +3,6 @@
 import Button from '@/app/components/Button';
 import Heading from '@/app/components/Heading';
 import CategoryInput from '@/app/components/inputs/CategoryInput';
-// import CustomCheckbox from '@/app/components/inputs/CustomCheckbox';
 import Input from '@/app/components/inputs/Input';
 import SelectColor from '@/app/components/inputs/SelectColor';
 import TextArea from '@/app/components/inputs/TextArea';
