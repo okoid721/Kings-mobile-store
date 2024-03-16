@@ -48,7 +48,7 @@ const SearchBar = () => {
         type="text"
         placeholder="Explore Kings.io"
         className="p-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-[0.5px] focus:border-slate-500 w-80 text-black"
-        defaultValue={searchTerm}
+        // defaultValue={searchTerm}
       />
       <button
         onClick={handleSubmit(onSubmit)}
