@@ -61,7 +61,10 @@ export async function POST(request: Request) {
         }),
       ]);
       if (!existing_order) {
-        return NextResponse.error();
+        return NextResponse.json(
+          { error: 'invalid payment intent' },
+          { status: 400 }
+        );
       }
       return NextResponse.json({ paymentIntent: updated_intent });
     }
