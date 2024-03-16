@@ -19,7 +19,7 @@ const calculateOrderAmount = (items: CartProductType[]) => {
 export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
   if (!currentUser) {
-    return NextResponse.error();
+    return NextResponse.json({ error: 'Unathorised' }, { status: 401 });
   }
 
   const body = await request.json();
@@ -82,5 +82,5 @@ export async function POST(request: Request) {
   }
 
   //Return a default response (e.g)... on error response, if none of the conditions are met
-  return NextResponse.error();
+  return NextResponse.json({ payment_intent_id });
 }
