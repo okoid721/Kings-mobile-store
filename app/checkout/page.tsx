@@ -1,12 +1,12 @@
-import React from "react";
-import Container from "../components/Container";
-import FormWrap from "../components/FormWrap";
-import CheckoutClient from "./CheckoutClient";
+import React from 'react';
+import Container from '../components/Container';
+import FormWrap from '../components/FormWrap';
+import CheckoutClient from './CheckoutClient';
 
 const Checkout = () => {
   return (
     <>
-      <div className="text-[#0F1111] select-none pt-8 bg-white">
+      <div className="text-[#0F1111] select-none pt-6 bg-white">
         <Container>
           <FormWrap>
             <CheckoutClient />
